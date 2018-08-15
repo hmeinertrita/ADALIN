@@ -7,8 +7,6 @@ const sessionClient = new dialogflow.SessionsClient();
 
 const projectId = "ada-lin";
 const languageCode = 'en-US';
-const sessionPath = sessionClient.sessionPath(projectId, sessionId);
-const broadcast;
 
 discordClient.on('ready', function(){
     console.log("Discord Client ready");
@@ -50,7 +48,7 @@ discordClient.on('message', function(message){
       })
       .then(responses => {
         message.reply(responses[0].queryResult.fulfillmentText);
-        for (const connection of client.voiceConnections.values()) {
+        for (const connection of discordClient.voiceConnections.values()) {
           connection.playArbiraryInput(responses[0].outputAudio);
         }
       })
@@ -60,3 +58,7 @@ discordClient.on('message', function(message){
     }
   }
 });
+
+function remove(username, text){
+    return text.replace("@" + username + " ", "");
+}
