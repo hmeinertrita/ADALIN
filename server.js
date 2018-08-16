@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const dialogflow = require('dialogflow').v2beta1;
 const stream = require('stream');
+const fs = require('fs');
 
 
 const discordClient = new Discord.Client();
@@ -58,13 +59,23 @@ discordClient.on('message', function(message){
         //console.log('base64 Audio: ' + responses[0].outputAudio);
         var b64string = responses[0].outputAudio;
         var buf = Buffer.from(b64string, 'base64');
-        console.log(buf.toString('utf8'));
         
         var audioStream = new stream.PassThrough();
         audioStream.end(buf);
         
+        var myFile = fs.createWriteStream("test.wav");
         
-        //broadcast.playStream(audioStream);
+        //audioStream.pipe(myFile);
+        
+        broadcast.playStream(audioStream);
+        //fs.writeFile('test.wav', buf, 'binary', err => {
+        //  if (err) {
+        //    console.error('ERROR:', err);
+        //    return;
+        //  }
+        //});
+        
+        //broadcast.playFile('./test.wav');
         
         for (const connection of discordClient.voiceConnections.values()) {
           connection.playBroadcast(broadcast);
