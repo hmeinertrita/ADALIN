@@ -1,14 +1,17 @@
 const Discord = require('discord.js');
-var dialogflow = require('dialogflow').v2beta1;
-var config = require('discorddialogflow/config');
+const dialogflow = require('dialogflow').v2beta1;
+const stream = require('stream');
+
 
 const discordClient = new Discord.Client();
 const sessionClient = new dialogflow.SessionsClient();
 
 const projectId = "ada-lin";
 const languageCode = 'en-US';
+var broadcast = null;
 
 discordClient.on('ready', function(){
+    broadcast = discordClient.createVoiceBroadcast();
     console.log("Discord Client ready");
 });
 
@@ -30,7 +33,7 @@ discordClient.on('message', function(message){
     else if (mess === 'leave me!') {
       if (message.member.voiceChannel) {
         message.member.voiceChannel.leave();
-        message.reply('I have successfully connected to the channel!');
+        message.reply('I have successfully left the channel!');
       } else {
         message.reply('You need to join me here first!');
       }
@@ -45,11 +48,26 @@ discordClient.on('message', function(message){
             languageCode: languageCode,
           },
         },
+        //outputAudioConfig: {
+        //  audioEncoding: 'OUTPUT_AUDIO_ENCODING_LINEAR_16',
+        //}
       })
       .then(responses => {
         message.reply(responses[0].queryResult.fulfillmentText);
+        
+        //console.log('base64 Audio: ' + responses[0].outputAudio);
+        var b64string = responses[0].outputAudio;
+        var buf = Buffer.from(b64string, 'base64');
+        console.log(buf.toString('utf8'));
+        
+        var audioStream = new stream.PassThrough();
+        audioStream.end(buf);
+        
+        
+        //broadcast.playStream(audioStream);
+        
         for (const connection of discordClient.voiceConnections.values()) {
-          connection.playArbiraryInput(responses[0].outputAudio);
+          connection.playBroadcast(broadcast);
         }
       })
       .catch(err => {
@@ -62,3 +80,5 @@ discordClient.on('message', function(message){
 function remove(username, text){
     return text.replace("@" + username + " ", "");
 }
+
+discordClient.login('NDc4OTk4Njk4NDA0MjE2ODQ3.DlYLhA.KiLpUKV3-ZfEC43v-P_71uKtwwI');
