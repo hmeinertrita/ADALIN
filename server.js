@@ -1,3 +1,3 @@
-const discordIntegration = require('./discordIntegration');
+const discordIntegration = require('./discord-integration');
 
-discordIntegration.init();
+discordIntegration.init('ada-lin', 'en-US');
