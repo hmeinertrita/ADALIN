@@ -2,9 +2,8 @@ const Discord = require('discord.js');
 const dialogflow = require('dialogflow').v2beta1;
 const stream = require('stream');
 const fs = require('fs');
-const tokens = JSON.parse(fs.readFileSync('tokens.json'));
 
-function init(projectId, languageCode) {
+function init(projectId, languageCode, token) {
   const discordClient = new Discord.Client();
   const sessionClient = new dialogflow.SessionsClient();
   var broadcast = null;
@@ -67,7 +66,7 @@ function init(projectId, languageCode) {
     }
   });
 
-  discordClient.login(tokens.DISCORD_TOKEN);
+  discordClient.login(token);
 
   return ({
     'discord': discordClient,
