@@ -1,8 +1,13 @@
-//const discordIntegration = require('./discord-integration');
 var fetch = require("node-fetch");
 const agentId = 'ada-lin';
 
-//discordIntegration.init(agentId, 'en-US');
+// const discordIntegration = require('./discord-integration');
+// const fs = require('fs');
+//
+// process.env.GOOGLE_APPLICATION_CREDENTIALS = 'credentials.json';
+// const tokens = JSON.parse(fs.readFileSync('tokens.json'));
+//
+// discordIntegration.init('ada-lin', 'en-US', tokens.DISCORD_TOKEN);
 
 //fetch('https://dialogflow.googleapis.com/v2beta1/projects/' + agentId + '/knowledgeBases')
 // .then((response) => {
