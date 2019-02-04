@@ -3,7 +3,7 @@ const dialogflow = require('dialogflow').v2beta1;
 const stream = require('stream');
 const fs = require('fs');
 
-function init(projectId, languageCode) {
+function init(projectId, languageCode, token) {
   const discordClient = new Discord.Client();
   const sessionClient = new dialogflow.SessionsClient();
   var broadcast = null;
@@ -66,7 +66,7 @@ function init(projectId, languageCode) {
     }
   });
 
-  discordClient.login('NDc4OTk4Njk4NDA0MjE2ODQ3.DlYLhA.KiLpUKV3-ZfEC43v-P_71uKtwwI');
+  discordClient.login(token);
 
   return ({
     'discord': discordClient,
