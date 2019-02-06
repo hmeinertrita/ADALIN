@@ -23,6 +23,15 @@ async function listKnowledgeBases(projectId) {
   return resources;
 }
 
+function findDocument(projectid, displayName) {
+  resources = await listDocuments(projectId);
+  resources.forEach(r => {
+    if (r.displayName === displayName) {
+      return r;
+    }
+  });
+}
+
 async function listDocuments(projectId, knowledgeBaseFullName) {
   // Instantiate a DialogFlow Documents client.
   const client = new dialogflow.DocumentsClient({
@@ -32,9 +41,6 @@ async function listDocuments(projectId, knowledgeBaseFullName) {
   const [resources] = await client.listDocuments({
     parent: knowledgeBaseFullName,
   });
-  console.log(
-    `There are ${resources.length} documents in ${knowledgeBaseFullName}`
-  );
   return resources;
 }
 
@@ -71,3 +77,12 @@ async function createDocument(projectId, documentName, knowledgeBaseFullName, ra
   const [response] = await operation.promise();
   console.log('document created');
 }
+
+module.exports = {
+  createDocument: createDocument,
+  deleteDocument: deleteDocument,
+  listDocuments: listDocuments,
+  findDocument: findDocument,
+  listKnowledgeBases: listKnowledgeBases,
+  findKnowledgeBase: findKnowledgeBase
+};

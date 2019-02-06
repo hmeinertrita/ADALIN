@@ -17,10 +17,11 @@ function init() {
 
 async function refreshKnowledgeBase(html) {
   const encodedHtml = Buffer.from(html).toString('base64');
-  const name = knowledgebase.findKnowledgeBase(agent.projectId, agent.knowledgeBaseDisplayName);
+  const knowledgeBaseName = knowledgebase.findKnowledgeBase(agent.projectId, agent.knowledgeBaseDisplayName).name;
+  const documentName = knowledgebase.findDocument(agent.projectId, agent.knowledgeBaseDisplayName).name;
 
-  await knowledgebase.deleteDocument(agent.projectId, name);
-  knowledgebase.createDocument(agent.projectId, agent.knowledgeBaseDisplayName, name, encodedHtml);
+  await knowledgebase.deleteDocument(agent.projectId, documentName);
+  knowledgebase.createDocument(agent.projectId, agent.knowledgeBaseDisplayName, knowledgeBaseName, encodedHtml);
 }
 
 module.exports = {
