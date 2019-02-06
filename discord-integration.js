@@ -1,11 +1,8 @@
 const Discord = require('discord.js');
-const dialogflow = require('dialogflow').v2beta1;
 const stream = require('stream');
-const fs = require('fs');
 
-function init(projectId, languageCode, token) {
+function init(sessionClient, projectId, languageCode, token) {
   const discordClient = new Discord.Client();
-  const sessionClient = new dialogflow.SessionsClient();
   var broadcast = null;
 
   discordClient.on('ready', function(){
@@ -16,9 +13,10 @@ function init(projectId, languageCode, token) {
   discordClient.on('message', function(message){
     if((message.cleanContent.startsWith("@" + discordClient.user.username) || message.channel.type == 'dm') && discordClient.user.id != message.author.id){
       var mess = remove(discordClient.user.username, message.cleanContent);
-      console.log(mess);
+      console.log('recieved input: ' + mess);
       if (mess === 'join me!') {
         if (message.member.voiceChannel) {
+          console.log('joining voice channel...');
           message.member.voiceChannel.join()
           .then(connection => { // Connection is an instance of VoiceConnection
             message.reply('I have successfully connected to the channel!');
@@ -30,6 +28,7 @@ function init(projectId, languageCode, token) {
       }
       else if (mess === 'leave me!') {
         if (message.member.voiceChannel) {
+          console.log('leaving voice channel...');
           message.member.voiceChannel.leave();
           message.reply('I have successfully left the channel!');
         } else {
