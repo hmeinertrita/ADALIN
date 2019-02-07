@@ -7,16 +7,14 @@
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "GOOGLE_APPLICATION_CREDENTIALS='./credentials.json' node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "dialogflow": "^0.6.0",
     "discord.js": "^11.4.2",
-    "express": "^4.16.3",
     "ffmpeg": "0.0.4",
     "node-fetch": "^2.3.0",
     "node-opus": "^0.3.0",
-    "tiddlywiki": "^5.1.19"
   },
   "engines": {
     "node": "8.x"
