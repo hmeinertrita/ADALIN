@@ -3,11 +3,10 @@ const fsPromises = fs.promises
 const util = require('util')
 const exec = util.promisify(require('child_process').exec);
 
-async function exportStatic(dir, output) {
+async function exportStatic(dir, output, wikiFileName) {
   await exec('tiddlywiki --render [!is[system]sort[title]]')
   const tiddlers = await fsPromises.readdir(dir)
 
-  var static = ''
   var formattedStatic = ''
 
   await tiddlers.forEach(name => {
@@ -16,7 +15,7 @@ async function exportStatic(dir, output) {
     formattedStatic += formatTiddler(html + '', name) + '\n'
     fs.unlinkSync(filePath)
   })
-  fsPromises.writeFile(output+'/wiki.html', formattedStatic)
+  fsPromises.writeFile(output + '/' + wikiFileName, formattedStatic)
   fsPromises.rmdir(dir)
 }
 
@@ -33,9 +32,9 @@ function formatTiddler(html, filename) {
   return html
 }
 
-function init(port) {
-  exec('tiddlywiki --listen port='+port)
-  exportStatic('./output', './export')
+async function init(options) {
+  exec('tiddlywiki --listen port=' + options.port)
+  await exportStatic('./output', options.exportPath, output.wikiFileName)
 }
 
 module.exports = init

@@ -77,6 +77,4 @@ function remove(username, text){
   return text.replace("@" + username + " ", "");
 }
 
-module.exports = {
-   init: init
-}
+module.exports = init
