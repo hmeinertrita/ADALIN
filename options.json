@@ -1,0 +1,11 @@
+{
+  "enableBot": true,
+  "enableDialogflow": true,
+  "enableWiki": true,
+  "exportPath": "../export",
+  "wikiFileName": "wiki.html",
+  "tokenPath": "../tokens.json",
+  "crendentialsPath": "../credentials.json",
+  "wikiExportInterval": -1,
+  "knowledgebaseRefreshInterval": -1
+}
