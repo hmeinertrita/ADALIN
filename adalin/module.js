@@ -10,10 +10,9 @@ const agent = {
 }
 const sessionClient = new dialogflow.SessionsClient({ keyFilename: "credentials.json" })
 
-async function init(options) {
-  loadWiki(options.exportPath, options.wikiFileName)
-  const tokens = JSON.parse(await fs.promises.readFile(options.tokenPath))
-  //discordIntegration(sessionClient, 'ada-lin', 'en-US', tokens.DISCORD_TOKEN)
+async function init(options, discordToken) {
+  loadWiki(options.exportPath + '/' + options.wikiFileName)
+  //discordIntegration(sessionClient, 'ada-lin', 'en-US', discordToken)
 }
 
 async function refreshKnowledgeBase(html) {
@@ -25,8 +24,8 @@ async function refreshKnowledgeBase(html) {
   knowledgebase.createDocument(agent.projectId, agent.knowledgeBaseDisplayName, knowledgeBaseName, encodedHtml)
 }
 
-async function loadWiki(exportPath, fileName) {
-  const data = await fs.promises.readFile(exportPath + '/' + fileName)
+async function loadWiki(filePath) {
+  const data = await fs.promises.readFile(filePath)
   refreshKnowledgeBase(data+'')
 }
 
