@@ -1,2 +1,3 @@
-const adalin = require('./adalin');
-adalin.init();
+const adalin = require('./adalin/module');
+
+adalin(options);
