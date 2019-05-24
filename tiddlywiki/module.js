@@ -3,14 +3,25 @@ const fsPromises = fs.promises
 const util = require('util')
 const exec = util.promisify(require('child_process').exec);
 
+function delay(t, val) {
+   return new Promise(function(resolve) {
+       setTimeout(function() {
+           resolve(val);
+       }, t);
+   });
+}
+
 async function exportStatic(dir, output, wikiFileName) {
-  await exec('ls')
-  await exec('tiddlywiki ./wiki --render [!is[system]sort[title]]')
+
+  //WORKAROUND USING DELAY! FIX WHEN YOU GET A RESPONSE TO THE GITHUB ISSUE
+  //await exec('tiddlywiki ./tiddlywiki/wiki --render [!is[system]sort[title]]')
+  exec('tiddlywiki ./tiddlywiki/wiki --render [!is[system]sort[title]]')
+  await delay(2000);
   const tiddlers = await fsPromises.readdir(dir)
 
   var formattedStatic = ''
 
-  await tiddlers.forEach(name => {
+  tiddlers.forEach(name => {
     const filePath = dir + '/' + name
     var html = fs.readFileSync(filePath)
     formattedStatic += formatTiddler(html + '', name) + '\n'
@@ -34,8 +45,8 @@ function formatTiddler(html, filename) {
 }
 
 async function init(options) {
-  exec('tiddlywiki ./wiki --listen port=' + options.port)
-  await exportStatic(__dirname + '/output', options.exportPath, options.wikiFileName)
+  await exportStatic(__dirname + '/wiki/output', options.exportPath, options.wikiFileName)
+  //exec('tiddlywiki ./tiddlywiki/wiki --wsserver')
 }
 
 module.exports = init
