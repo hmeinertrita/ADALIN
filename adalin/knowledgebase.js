@@ -1,6 +1,6 @@
 const dialogflow = require('dialogflow').v2beta1;
 
-function findKnowledgeBase(projectid, displayName) {
+async function findKnowledgeBase(projectid, displayName) {
   resources = await listKnowledgeBases(projectId);
   resources.forEach(r => {
     if (r.displayName === displayName) {
@@ -23,7 +23,7 @@ async function listKnowledgeBases(projectId) {
   return resources;
 }
 
-function findDocument(projectid, displayName) {
+async function findDocument(projectid, displayName) {
   resources = await listDocuments(projectId);
   resources.forEach(r => {
     if (r.displayName === displayName) {
