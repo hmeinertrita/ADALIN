@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "NewWiki": "tiddlywiki #wikiName --init #editionName"
+  },
+  "wikis": {
+
+  },
+  "ws-server": {
+    "port": 8080,
+    "host": "127.0.0.1",
+    "autoIncrementPort": false,
+    "username": "adalin",
+    "password": "deva"
+  },
+  "heartbeat": {
+    "interval": 1000
+  }
+}
