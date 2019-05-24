@@ -1,0 +1,3 @@
+[submodule "tiddlywiki/plugins/OokTech/Bob"]
+	path = tiddlywiki/plugins/OokTech/Bob
+	url = https://github.com/OokTech/TW5-Bob.git
