@@ -46,7 +46,7 @@ function formatTiddler(html, filename) {
 
 async function init(options) {
   await exportStatic(__dirname + '/wiki/output', options.exportPath, options.wikiFileName)
-  //exec('tiddlywiki ./tiddlywiki/wiki --wsserver')
+  exec('tiddlywiki ./tiddlywiki/wiki --wsserver')
 }
 
 module.exports = init
