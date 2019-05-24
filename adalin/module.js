@@ -12,7 +12,7 @@ const agent = {
 async function init(options, discordToken) {
   const sessionClient = new dialogflow.SessionsClient({ keyFilename: options.crendentialsPath })
   loadWiki(options.exportPath + '/' + options.wikiFileName)
-  //discordIntegration(sessionClient, 'ada-lin', 'en-US', discordToken)
+  discordIntegration(sessionClient, 'ada-lin', 'en-US', discordToken)
 }
 
 function findResourceName(resources, displayName) {
