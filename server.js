@@ -7,7 +7,7 @@ async function start() {
   const tokens = JSON.parse(await fs.promises.readFile('tokens.json'))
 
   //await wiki(options)
-  adalin(options)//, tokens.discordToken)
+  adalin(options, tokens.discordToken)
 }
 
 start()
