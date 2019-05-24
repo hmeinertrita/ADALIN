@@ -10,11 +10,11 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "dialogflow": "^0.6.0",
-    "discord.js": "^11.4.2",
+    "dialogflow": "^0.9.1",
+    "discord.js": "^11.5.0",
     "ffmpeg": "0.0.4",
-    "node-fetch": "^2.3.0",
-    "node-opus": "^0.3.0",
+    "node-fetch": "^2.6.0",
+    "node-opus": "^0.3.0"
   },
   "engines": {
     "node": "8.x"

@@ -1,8 +1,9 @@
 const dialogflow = require('dialogflow').v2beta1;
 
-function findKnowledgeBase(projectid, displayName) {
+async function findKnowledgeBase(projectId, displayName) {
   resources = await listKnowledgeBases(projectId);
   resources.forEach(r => {
+    console.log(r.displayName)
     if (r.displayName === displayName) {
       return r;
     }
@@ -16,15 +17,14 @@ async function listKnowledgeBases(projectId) {
   });
 
   const formattedParent = client.projectPath(projectId);
-
   const [resources] = await client.listKnowledgeBases({
     parent: formattedParent,
   });
   return resources;
 }
 
-function findDocument(projectid, displayName) {
-  resources = await listDocuments(projectId);
+async function findDocument(projectId, knowledgeBaseFullName, displayName) {
+  resources = await listDocuments(projectId, knowledgeBaseFullName);
   resources.forEach(r => {
     if (r.displayName === displayName) {
       return r;
@@ -71,7 +71,6 @@ async function createDocument(projectId, documentName, knowledgeBaseFullName, ra
       mimeType: 'text/html',
     },
   };
-  console.log(request.document.rawContent);
 
   const [operation] = await client.createDocument(request);
   const [response] = await operation.promise();
