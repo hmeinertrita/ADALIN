@@ -8,9 +8,9 @@ const agent = {
   agentId: 'ada-lin',
   knowledgeBaseDisplayName: 'wiki'
 }
-const sessionClient = new dialogflow.SessionsClient({ keyFilename: "credentials.json" })
 
 async function init(options, discordToken) {
+  const sessionClient = new dialogflow.SessionsClient({ keyFilename: "credentials.json" })
   loadWiki(options.exportPath + '/' + options.wikiFileName)
   //discordIntegration(sessionClient, 'ada-lin', 'en-US', discordToken)
 }
