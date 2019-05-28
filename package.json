@@ -4,7 +4,7 @@
   "//3": "updating this file will download and update your packages",
   "name": "adalin",
   "version": "0.0.1",
-  "description": "An integration of Dialogflow with a Discord bot and a Tiddlywiki 5 wiki. Hosts a wki for a tabletop rpg campaign on glitch.com",
+  "description": "An integration of Dialogflow with a Discord bot and a Tiddlywiki 5 wiki. Hosts a wiki for a tabletop rpg campaign on glitch.com",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
