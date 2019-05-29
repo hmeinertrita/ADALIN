@@ -2,3 +2,6 @@ node_modules/
 credentials.json
 tokens.json
 export.txt
+.DS_Store
+recordings/
+tiddlywiki/wiki/output/
