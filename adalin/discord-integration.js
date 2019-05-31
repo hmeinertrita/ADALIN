@@ -46,7 +46,7 @@ function detectIntentAudio(audioStream) {
       inputAudio: audioBuffer
     })
 
-    console.log(responses[0])
+    //console.log(responses[0])
     handleAudioResponse(responses[0])
   })
 }
