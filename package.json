@@ -14,7 +14,7 @@
     "discord.js": "^11.5.0",
     "ffmpeg": "0.0.4",
     "fluent-ffmpeg": "^2.1.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-opus": "^0.3.0"
   },
   "engines": {
