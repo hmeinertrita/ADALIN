@@ -7,4 +7,4 @@ Launching the application hosts a Tiddlywiki that can be viewed and edited by mu
 
 The Discord bot is directly connected to an ADALIN Dialogflow agent. A message in a Discord channel that directly mentions the bot (@ADALIN) is passed as a query to the agent. The agent's response is then posted in the same Discord channel as the original query and mentions the user who made the query. Queries can also be made as direct messages to the bot without the need to mention the bot.
 
-Each time the application is launched, the entire wiki is collected into a single HTML file and uploaded to the ADALIN Dialogflow agent as a Knowledgebase article. 
+Each time the application is launched, the entire wiki is collected into a single HTML file and uploaded to the ADALIN Dialogflow agent as a Knowledgebase article. This allows the bot to answer freeform questions such as "What is [some person]'s favourite food?" or "Where is [location]?" by consulting the entire contents of the wiki.
